@@ -1,0 +1,48 @@
+# Docker configuration for PHP development
+
+version: "3"
+
+services:
+  web:
+    image: localdev-php-nginx:1.19
+    build:
+      context: ./services/nginx
+      dockerfile: ./1.19/Dockerfile
+    ports:
+    - "80:8080"
+    - "443:8443"
+    volumes: &appvolumes
+      - ../src/public:/var/www/html:ro
+      - ../src/app:/var/www/app:ro
+      - appdata:/var/www
+      - sockdata:/sock
+      - ssldata:/etc/nginx/certs
+    links:
+      - db
+      - app
+
+  app:
+    image: localdev-php-fpm:7.4
+    build: ./services/php-fpm/7.4
+    volumes: *appvolumes
+    links:
+      - db
+
+  db:
+    image: percona:5.7
+    restart: always
+    env_file: ./services/mysql/dev.env
+    volumes:
+    - dbdata:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  appdata:
+  dbdata:
+  sockdata:
+  ssldata:
