@@ -2,23 +2,21 @@
 
 ## Commands to work with Docker
 
-Replace `project_name` with suitable value so containers included in projects displayed separately
-
 ### Building or rebuilding containers
 
-    $ docker-compose -p project_name -f docker/docker-compose.yml build --parallel
+    $ docker-compose build --parallel
 
 ### Starting containers
 
-    $ docker-compose -p project_name -f docker/docker-compose.yml up -d
+    $ docker-compose up -d
 
 ### Stopping containers temporarily
 
-    $ docker-compose -p project_name -f docker/docker-compose.yml stop
+    $ docker-compose stop
 
 ### Stopping and removing containers
 
-    $ docker-compose -p project_name -f docker/docker-compose.yml down
+    $ docker-compose down
 
 ### Removing volumes when project is removed
 
