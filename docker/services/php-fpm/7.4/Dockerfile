@@ -6,7 +6,6 @@ RUN groupadd -g 1000 webapp \
 
 # Install PHP extensions
 RUN docker-php-ext-install \
-  mbstring \
   mysqli
 
 COPY conf/www.conf /usr/local/etc/php-fpm.d/
