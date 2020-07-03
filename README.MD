@@ -32,3 +32,13 @@ Removing all unused volumes (use carefully)
 
     $ docker volume prune
     
+### Connecting to shell
+
+Connecting as default user
+
+    $ docker exec -it containerId bash
+
+Connecting as root user
+
+    $ docker exec -u 0 -it containerId bash
+

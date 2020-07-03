@@ -14,6 +14,7 @@ services:
     volumes: &appvolumes
       - ./src/public:/var/www/html:ro
       - ./src/app:/var/www/app:ro
+      - ./src/uploads:/var/www/uploads:delegated
       - appdata:/var/www
       - sockdata:/sock
       - ssldata:/etc/nginx/certs

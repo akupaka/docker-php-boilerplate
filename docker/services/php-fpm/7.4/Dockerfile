@@ -4,6 +4,11 @@ MAINTAINER Roman.K <akupaka@gmail.com>
 RUN groupadd -g 1000 webapp \
  && useradd -g 1000 -u 1000 -d /var/www -s /bin/bash webapp
 
+# Install PHP extensions
+RUN docker-php-ext-install \
+  mbstring \
+  mysqli
+
 COPY conf/www.conf /usr/local/etc/php-fpm.d/
 COPY conf/php.ini /usr/local/etc/php/
 COPY conf/php-fpm.conf /usr/local/etc/
