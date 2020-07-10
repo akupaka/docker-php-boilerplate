@@ -21,7 +21,7 @@ COPY ./conf/nginx.conf /etc/nginx/
 COPY ./conf/default.conf /etc/nginx/conf.d/
 
 RUN mkdir -p /var/www/default/public /var/www/default/uploads /sock \
- && chown -R webapp:webapp /var/www /etc/nginx /var/cache/nginx /var/run/nginx.pid /sock \ ;
+ && chown -R webapp:webapp /var/www /etc/nginx /var/cache/nginx /var/run/nginx.pid /sock
 # That does not seem to be working
 # && find /var/www -type f -exec chmod 444 {} \;\
 # && find /var/www -type d -exec chmod 555 {} \;\
