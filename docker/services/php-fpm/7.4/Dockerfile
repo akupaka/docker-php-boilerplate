@@ -18,13 +18,17 @@ RUN pecl install xdebug-2.8.1 \
 # If xdebug must be disabled on build
 # RUN sed -i -e 's/^zend_extension/\;zend_extension/g' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN mkdir -p /var/www/html /sock \
- && chown -R webapp:webapp /var/www /usr/local/etc/php/conf.d /sock
+RUN mkdir -p /var/www/default/public /var/www/default/uploads /sock \
+ && chown -R webapp:webapp /var/www /usr/local/etc/php/conf.d /sock \ ;
+# That does not seem to be working
+# && find /var/www -type f -exec chmod 444 {} \; \
+# && find /var/www -type d -exec chmod 555 {} \; \
+# && chmod -R 644 /var/www/default/uploads
 
 USER webapp:webapp
 
 VOLUME /var/www
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 EXPOSE 9001

@@ -20,8 +20,12 @@ RUN cd /usr/local/bin/ \
 COPY ./conf/nginx.conf /etc/nginx/
 COPY ./conf/default.conf /etc/nginx/conf.d/
 
-RUN mkdir -p /etc/nginx/html /var/www/html /sock \
- && chown -R webapp:webapp /etc/nginx /var/www /var/cache/nginx /var/run/nginx.pid /sock
+RUN mkdir -p /var/www/default/public /var/www/default/uploads /sock \
+ && chown -R webapp:webapp /var/www /etc/nginx /var/cache/nginx /var/run/nginx.pid /sock \ ;
+# That does not seem to be working
+# && find /var/www -type f -exec chmod 444 {} \;\
+# && find /var/www -type d -exec chmod 555 {} \;\
+# && chmod -R 644 /var/www/default/uploads
 
 EXPOSE 8443
 
@@ -29,4 +33,4 @@ USER webapp:webapp
 
 VOLUME /var/www
 
-WORKDIR /var/www/html
+WORKDIR /var/www

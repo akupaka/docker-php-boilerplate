@@ -12,9 +12,7 @@ services:
     - "80:8080"
     - "443:8443"
     volumes: &appvolumes
-      - ./src/public:/var/www/html:ro
-      - ./src/app:/var/www/app:ro
-      - ./src/uploads:/var/www/uploads:delegated
+      - ./src:/var/www/default:delegated
       - appdata:/var/www
       - sockdata:/sock
       - ssldata:/etc/nginx/certs
