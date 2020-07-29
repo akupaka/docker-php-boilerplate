@@ -6,7 +6,10 @@ RUN groupadd -g 1000 webapp \
 
 # Install PHP extensions
 RUN docker-php-ext-install \
-  mysqli
+  mysqli \
+  pdo_mysql \
+  && docker-php-ext-enable \
+  pdo_mysql
 
 COPY conf/www.conf /usr/local/etc/php-fpm.d/
 COPY conf/php.ini /usr/local/etc/php/
